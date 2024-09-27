@@ -5,15 +5,20 @@
 **Ugráló Madár** is a Python-based game inspired by the popular Flappy Bird, created using the Pygame library. The objective of the game is to control a bird and guide it through obstacles while avoiding collisions. The game progressively becomes more challenging as you score higher.
 
 ## Table of Contents
-- [Features](#features)
-- [Requirements](#requirements)
-- [Installation](#installation)
-- [How to Play](#how-to-play)
-- [Game Controls](#game-controls)
-- [Known Issues](#known-issues)
-- [Credits](#credits)
-- [Screenshots](#screenshots)
-- [License](#license)
+
+- [Ugráló Madár](#ugráló-madár)
+  - [ Flappy Bird, but without a budget](#-flappy-bird-but-without-a-budget)
+  - [Table of Contents](#table-of-contents)
+  - [Features](#features)
+  - [Requirements](#requirements)
+  - [Installation](#installation)
+  - [How to Play](#how-to-play)
+  - [Game Controls](#game-controls)
+  - [Known Issues](#known-issues)
+  - [Credits](#credits)
+  - [Screenshots](#screenshots)
+  - [License](#license)
+  - [Attributions](#attributions)
 
 ## Features
 
@@ -26,33 +31,34 @@
 ## Requirements
 
 - **Python 3.6+**
-- **Pygame 2.x** library
+- **Pygame 2.x**
+- **gif-pygame 1.1.x**
 
 You can install the required dependencies by running:
 
 ```bash
-pip install pygame
+pip install -r requirements.txt
 ```
 
 ## Installation
 
 1. Clone this repository to your local machine:
 
-    ```bash
-    git clone https://github.com/kriszsusu/ugralo-madar.git
-    ```
+   ```bash
+   git clone https://github.com/kriszsusu/ugralo-madar.git
+   ```
 
 2. Navigate to the game directory:
 
-    ```bash
-    cd ugralo-madar
-    ```
+   ```bash
+   cd ugralo-madar
+   ```
 
 3. Run the game:
 
-    ```bash
-    python ugralomadar.py
-    ```
+   ```bash
+   python ugralomadar.py
+   ```
 
 ## How to Play
 
@@ -92,7 +98,13 @@ Special thanks to the creators of Pygame for making this project possible!
 
 This project is licensed under the MIT License. Feel free to modify and share the code, but please provide proper attribution when using it in your projects.
 
+## Attributions
+
+- Wing Flap 1.wav by _stubb -- https://freesound.org/s/389634/ -- License: Creative Commons 0
+- Video Game Coin by harrietniamh -- https://freesound.org/s/415083/ -- License: Attribution 4.0
+- WD-40 quarter Full - Bathroom - Fall 1m on carpet on tiles 45degree angle - MS Stereo by Sadiquecat -- https://freesound.org/s/739418/ -- License: Creative Commons 0
+- OldTrombone - G#2 (Trombone_Fall_G#2_1.wav) by sgossner -- https://freesound.org/s/374751/ -- License: Creative Commons 0
+
 ---
 
 Enjoy playing **Ugráló Madár**! Feel free to contribute to the project by reporting issues, suggesting features, or submitting pull requests.
-
