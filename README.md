@@ -19,7 +19,6 @@
   - [Screenshots](#screenshots)
   - [License](#license)
   - [Showcase Video](#showcase-video)
-    - [This video was recorded and created by Csigusz Foxoup. All props to him!](#this-video-was-recorded-and-created-by-csigusz-foxoup-all-props-to-him)
   - [Attributions](#attributions)
 
 ## Features
@@ -102,9 +101,7 @@ This project is licensed under the MIT License. Feel free to modify and share th
 
 ## Showcase Video
 
-### This video was recorded and created by <a href="https://www.youtube.com/@csiguszfoxoup" target="_blank">Csigusz Foxoup</a>. All props to him!
-
-<iframe width="1280" height="720" src="https://www.youtube.com/embed/T_3cFiQcfu4" title="Ugráló Madár Reakció!!!" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+This video was recorded and created by <a href="https://www.youtube.com/@csiguszfoxoup" target="_blank">Csigusz Foxoup</a>. All props to him! - <a href="https://www.youtube.com/watch?v=T_3cFiQcfu4">https://www.youtube.com/watch?v=T_3cFiQcfu4</a>
 
 ## Attributions
 
