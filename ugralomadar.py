@@ -192,15 +192,17 @@ def game_loop():
             if event.type == pygame.QUIT:
                 running = False
                 exit(0)
+            if event.type == pygame.KEYDOWN and event.key in [
+                pygame.K_SPACE,
+                pygame.K_UP,
+                pygame.K_w,
+            ]:
+                madar.flap()
             if (
                 event.type == pygame.KEYDOWN
-                and event.key == pygame.K_SPACE
-                or event.type == pygame.KEYDOWN
-                and event.key == pygame.K_UP
-                and not game_over
+                and event.key in [pygame.K_SPACE, pygame.K_r]
+                and game_over
             ):
-                madar.flap()
-            if event.type == pygame.KEYDOWN and event.key == pygame.K_r and game_over:
                 game_loop()
 
         if not game_over:
