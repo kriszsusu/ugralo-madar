@@ -84,7 +84,7 @@ The objective is to survive as long as possible and achieve the highest score!
 
 - **Game Development**: [Krisz](https://github.com/kriszsusu), [Dzsanga](https://github.com/DzsangaGIT)
 - **Graphics**: [Bakos](https://github.com/BAKOSDOMI), [Krisz](https://github.com/kriszsusu), [Dzsanga](https://github.com/DzsangaGIT) (Microsoft Paint 🤩)
-- **Music/SFX**: Audacity
+- **Music/SFX**: Audacity + Freesound.org
 
 Special thanks to the creators of Pygame for making this project possible!
 
@@ -102,7 +102,6 @@ This project is licensed under the MIT License. Feel free to modify and share th
 
 - Wing Flap 1.wav by _stubb -- https://freesound.org/s/389634/ -- License: Creative Commons 0
 - Video Game Coin by harrietniamh -- https://freesound.org/s/415083/ -- License: Attribution 4.0
-- WD-40 quarter Full - Bathroom - Fall 1m on carpet on tiles 45degree angle - MS Stereo by Sadiquecat -- https://freesound.org/s/739418/ -- License: Creative Commons 0
 - OldTrombone - G#2 (Trombone_Fall_G#2_1.wav) by sgossner -- https://freesound.org/s/374751/ -- License: Creative Commons 0
 
 ---
