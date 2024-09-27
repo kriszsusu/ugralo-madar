@@ -1,12 +1,11 @@
 import pygame, gif_pygame
 import random
-import string
 
 pygame.init()
 
 W = 400
 H = 600
-kepernyo = pygame.display.set_mode((W, H))
+screen = pygame.display.set_mode((W, H))
 
 BIRDIMG = pygame.image.load("assets/bird.png").convert_alpha()
 BIRDIMG = pygame.transform.scale(BIRDIMG, (50, 50))
@@ -36,6 +35,84 @@ FPS = 60
 
 OBS_WIDTH = 70
 OBS_GAP = 300
+
+
+class SpriteNumber:
+    def __init__(self):
+        self.spritesheet = pygame.image.load("assets/numbers.png").convert_alpha()
+        self.char_size = (16, 16)
+        self.char_map = {
+            "1": (0, 0),
+            "2": (1, 0),
+            "3": (2, 0),
+            "4": (3, 0),
+            "5": (4, 0),
+            "6": (5, 0),
+            "7": (6, 0),
+            "8": (7, 0),
+            "9": (8, 0),
+            "0": (9, 0),
+        }
+
+    def get_char(self, x, y):
+        rect = pygame.Rect(
+            x * self.char_size[0],
+            y * self.char_size[1],
+            self.char_size[0],
+            self.char_size[1],
+        )
+        char_image = pygame.Surface(self.char_size, pygame.SRCALPHA)
+        char_image.blit(self.spritesheet, (0, 0), rect)
+
+        return self.trim(char_image)
+
+    def trim(self, image):
+        mask = pygame.mask.from_surface(image)
+        if mask.count() == 0:
+            return image
+
+        rect = mask.get_bounding_rects()[0]
+
+        trimmed_image = pygame.Surface((rect.width, rect.height), pygame.SRCALPHA)
+        trimmed_image.blit(image, (0, 0), rect)
+
+        return trimmed_image
+
+    def render_text(self, screen, text, x, y, scale=3, spacing=0):
+        pos_x = x
+        for i, char in enumerate(text):
+            if char in self.char_map:
+                char_image = self.get_char(*self.char_map[char])
+
+                if scale != 1:
+                    char_image = pygame.transform.scale(
+                        char_image,
+                        (
+                            int(char_image.get_width() * scale),
+                            int(char_image.get_height() * scale),
+                        ),
+                    )
+
+                screen.blit(char_image, (pos_x, y))
+                pos_x += char_image.get_width() + spacing
+
+    def size(self, text, scale=3, spacing=0):
+        total_width = 0
+        max_height = 0
+        for char in text:
+            if char in self.char_map:
+                char_image = self.get_char(*self.char_map[char])
+
+                char_width = char_image.get_width() * scale
+                char_height = char_image.get_height() * scale
+
+                total_width += char_width + spacing
+
+                if char_height > max_height:
+                    max_height = char_height
+
+        total_width -= spacing
+        return total_width, max_height
 
 
 class Madar:
@@ -106,8 +183,10 @@ def game_loop():
     running = True
     game_over = False
 
+    spritenum = SpriteNumber()
+
     while running:
-        kepernyo.fill(KEK)
+        screen.fill(KEK)
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -126,11 +205,11 @@ def game_loop():
 
         if not game_over:
             madar.update()
-            madar.draw(kepernyo)
+            madar.draw(screen)
 
             for akadaly in akadalyok:
                 akadaly.update()
-                akadaly.draw(kepernyo)
+                akadaly.draw(screen)
 
                 if (
                     madar.x + madar.width > akadaly.x
@@ -161,28 +240,21 @@ def game_loop():
             if akadalyok[-1].x < W - 200:
                 akadalyok.append(Akadaly())
 
-            font = pygame.font.SysFont("Comic Sans MS", 40)
-            text = font.render(f"{pont}", True, FEKETE)
-            kepernyo.blit(text, (W // 2 - font.size(f"{pont}")[0] // 2, 0))
-
+            text_width, _ = spritenum.size(f"{pont}")
+            spritenum.render_text(screen, f"{pont}", W // 2 - text_width // 2, 20)
         else:
-            kepernyo.fill(FEHER)
-            kepernyo.blit(BG_GIF.blit_ready(), (0, 0))
+            screen.fill(FEHER)
+            screen.blit(BG_GIF.blit_ready(), (0, 0))
 
-            kepernyo.blit(
+            screen.blit(
                 GAMEOVER_GIF.blit_ready(),
                 (-20, H // 2 - GAMEOVER_GIF.get_size()[1] // 2 - 50),
             )
 
             font = pygame.font.SysFont("Comic Sans MS", 20)
             text = font.render("R az újrakezdéshez", True, FEKETE)
-            kepernyo.blit(
-                text,
-                (
-                    W // 2 - font.size("R az újrakezdéshez")[0] // 2,
-                    H // 2 + 100 - font.size("R az újrakezdéshez")[1] // 2,
-                ),
-            )
+            text_rect = text.get_rect(center=(W // 2, H // 2 + 100))
+            screen.blit(text, text_rect)
 
         pygame.display.flip()
 
@@ -192,26 +264,21 @@ def game_loop():
 def menu_screen():
     running = True
     while running:
-        kepernyo.fill(FEHER)
-        kepernyo.blit(BG_GIF.blit_ready(), (0, 0))
+        screen.fill(FEHER)
+        screen.blit(BG_GIF.blit_ready(), (0, 0))
 
-        # font = pygame.font.SysFont(None, 60)
-        # text = font.render("Ugráló Madár", True, FEKETE)
-        # kepernyo.blit(text, (W // 2 - 150, H // 2 - 100))
-
-        kepernyo.blit(
-            LOGO_GIF.blit_ready(), (W // 5, H // 2 - LOGO_GIF.get_size()[1] // 2 - 150)
+        screen.blit(
+            LOGO_GIF.blit_ready(),
+            (
+                W // 2 - LOGO_GIF.get_size()[0] // 2 - 25,
+                H // 2 - LOGO_GIF.get_size()[1] // 2 - 150,
+            ),
         )
 
         font = pygame.font.SysFont("Comic Sans MS", 20)
         text = font.render("Nyomj egy gombot!", True, FEKETE)
-        kepernyo.blit(
-            text,
-            (
-                W // 2 - font.size("Nyomj egy gombot!")[0] // 2,
-                H // 2 - font.size("Nyomj egy gombot!")[1] // 2,
-            ),
-        )
+        text_rect = text.get_rect(center=(W // 2, H // 2))
+        screen.blit(text, text_rect)
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
