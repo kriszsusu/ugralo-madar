@@ -1,15 +1,22 @@
-import pygame
+import pygame, gif_pygame
 import random
+import string
 
 pygame.init()
-
 
 W = 400
 H = 600
 kepernyo = pygame.display.set_mode((W, H))
 
-BIRDIMG = pygame.image.load('bird.png').convert_alpha()
+BIRDIMG = pygame.image.load('assets/bird.png').convert_alpha()
 BIRDIMG = pygame.transform.scale(BIRDIMG, (50, 50))
+
+GAMEOVER_GIF = gif_pygame.load("assets/gameover.gif")
+gif_pygame.transform.scale(GAMEOVER_GIF, (GAMEOVER_GIF.get_size()[0] * 2, GAMEOVER_GIF.get_size()[1] * 2))
+LOGO_GIF = gif_pygame.load("assets/logo.gif")
+BG_GIF = gif_pygame.load("assets/bg.gif")
+gif_pygame.transform.scale(BG_GIF, (W, H))
+
 pygame.display.set_icon(BIRDIMG)
 pygame.display.set_caption("Ugráló Madár")
 
@@ -22,7 +29,7 @@ clock = pygame.time.Clock()
 FPS = 60
 
 OBS_WIDTH = 70
-OBS_GAP = 250
+OBS_GAP = 300
 
 class Madar:
     def __init__(self):
@@ -33,6 +40,7 @@ class Madar:
         self.velocity = 0
         self.gravity = 0.5
         self.lift = -8
+        self.data = []
         
     def draw(self, kepernyo):
         kepernyo.blit(BIRDIMG, (self.x, self.y))
@@ -54,7 +62,7 @@ class Madar:
 class Akadaly:
     def __init__(self):
         self.x = W
-        self.height = random.randint(100, 400)
+        self.height = random.randint(100, H // 1.5)
         self.width = OBS_WIDTH
         self.gap = OBS_GAP
         self.speed = 5
@@ -115,20 +123,19 @@ def game_loop():
             if akadalyok[-1].x < W - 200:
                 akadalyok.append(Akadaly())
 
-            font = pygame.font.SysFont(None, 40)
-            text = font.render(f"p: {pont} y: {madar.y} h: {H}", True, FEKETE)
-            kepernyo.blit(text, (10, 10))
+            font = pygame.font.SysFont("Comic Sans MS", 40)
+            text = font.render(f"{pont}", True, FEKETE)
+            kepernyo.blit(text, (W // 2 - font.size(f"{pont}")[0] // 2, 0))
 
         else:
             kepernyo.fill(FEHER)
-            
-            font = pygame.font.SysFont("Comic Sans MS", 40)
-            text = font.render("Meghaltál!", True, FEKETE)
-            kepernyo.blit(text, (W // 2 - font.size("Meghaltál")[0] // 2, H // 2 - font.size("Meghaltál")[1] // 2))
+            kepernyo.blit(BG_GIF.blit_ready(), (0,0))
 
+            kepernyo.blit(GAMEOVER_GIF.blit_ready(), (-20, H // 2 - GAMEOVER_GIF.get_size()[1] // 2 - 50 ))
+            
             font = pygame.font.SysFont("Comic Sans MS", 20)
             text = font.render("R az újrakezdéshez", True, FEKETE)
-            kepernyo.blit(text, (W // 2 - font.size("R az újrakezdéshez")[0] // 2, H // 2 + 50 - font.size("R az újrakezdéshez")[1] // 2))
+            kepernyo.blit(text, (W // 2 - font.size("R az újrakezdéshez")[0] // 2, H // 2 + 100 - font.size("R az újrakezdéshez")[1] // 2))
 
         pygame.display.flip()
 
@@ -138,14 +145,17 @@ def menu_screen():
     running = True
     while running:
         kepernyo.fill(FEHER)
+        kepernyo.blit(BG_GIF.blit_ready(), (0,0))
 
-        font = pygame.font.SysFont(None, 60)
-        text = font.render("Ugráló Madár", True, FEKETE)
-        kepernyo.blit(text, (W // 2 - 150, H // 2 - 100))
+        #font = pygame.font.SysFont(None, 60)
+        #text = font.render("Ugráló Madár", True, FEKETE)
+        #kepernyo.blit(text, (W // 2 - 150, H // 2 - 100))
+        
+        kepernyo.blit(LOGO_GIF.blit_ready(), (W // 5, H // 2 - LOGO_GIF.get_size()[1] // 2 - 150 ))
 
-        font = pygame.font.SysFont(None, 30)
+        font = pygame.font.SysFont("Comic Sans MS", 30)
         text = font.render("Nyomj egy gombot!", True, FEKETE)
-        kepernyo.blit(text, (W // 2 - 150, H // 2 - 50))
+        kepernyo.blit(text, (W // 2 - font.size("Nyomj egy gombot!")[0] // 2, H // 2 - font.size("Nyomj egy gombot!")[1] // 2))
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:

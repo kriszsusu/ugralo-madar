@@ -1,6 +1,6 @@
 # Ugráló Madár
 
-**Flappy Bird, but without a budget.**
+## <img src="assets/bird.png" width="20px"> Flappy Bird, but without a budget
 
 **Ugráló Madár** is a Python-based game inspired by the popular Flappy Bird, created using the Pygame library. The objective of the game is to control a bird and guide it through obstacles while avoiding collisions. The game progressively becomes more challenging as you score higher.
 
@@ -12,6 +12,8 @@
 - [Game Controls](#game-controls)
 - [Known Issues](#known-issues)
 - [Credits](#credits)
+- [Screenshots](#screenshots)
+- [License](#license)
 
 ## Features
 
@@ -64,7 +66,7 @@ The objective is to survive as long as possible and achieve the highest score!
 ## Game Controls
 
 - **Jump**: Press the **Spacebar** to make the bird flap and rise.
-- **Quit**: Spam-click the **native Close button**. Good luck!
+- **Quit**: Click the **native Close button**.
 
 ## Known Issues
 
@@ -79,6 +81,12 @@ The objective is to survive as long as possible and achieve the highest score!
 - **Music/SFX**: Audacity
 
 Special thanks to the creators of Pygame for making this project possible!
+
+## Screenshots
+
+<img src="assets/Screenshots/titlescreen.gif" width="100px">
+<img src="assets/Screenshots/ingame.png" width="100px">
+<img src="assets/Screenshots/gameover.gif" width="100px">
 
 ## License
 
