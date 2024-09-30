@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ugráló Madár</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="assets/bird.png">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul class="pixel-nav">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#description">Description</a></li>
+                <li><a href="https://github.com/kriszsusu/ugralo-madar/tree/main" target="_blank">Play</a></li>
+                <li class="language-toggle"><button id="lang-toggle">EN</button></li>
+                <li class="hamburger"><button id="hamburger-toggle">☰</button></li>
+            </ul>
+            
+        </nav>
+
+        <h1 id="main-title">Welcome to <span>Ugráló Madár</span>!</h1>
+        <p id="main-description">Flappy Bird, but without a budget</p>
+    </header>
+
+    <div class="image-container">
+        <img src="assets/titlescreen.gif" alt="Bird 1">
+        <img src="assets/ingame.png" alt="Bird 2">
+        <img src="assets/gameover.gif" alt="Bird 3">
+    </div>
+
+    <main>
+        <section id="features" class="game-info">
+            <h2>Game Features</h2>
+            <ul>
+                <li>Classic Flappy Bird-inspired gameplay. (it's low quality on purpose)</li>
+                <li>Randomly generated pipe obstacles.</li>
+                <li>Simple, responsive controls.</li>
+                <li>Scoring system that tracks how far you progress.</li>
+                <li>Game-over screen with final score display.</li>
+            </ul>
+        </section>
+
+        <div class="description-section" id="description">
+            <h2>Description</h2>
+            <p class="readable">Ugráló Madár is a Python game influenced by the well-known Flappy Bird, developed using the Pygame library. Players must control a bird and navigate it through various obstacles while steering clear of collisions. As your score increases, the game gradually becomes more difficult.</p>
+            <div class="warning">
+                <p>USE AT YOUR OWN RISK</p>
+            </div>
+        </div>        
+
+        <section id="play" class="cta">
+            <button class="play-button">Start Playing!</button>
+        </section>
+
+        <div id="popup-overlay" class="popup-overlay">
+            <img src="assets/boo.jpg" alt="Troll Face" class="troll-face">
+        </div>
+        
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Ugráló Madár</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
