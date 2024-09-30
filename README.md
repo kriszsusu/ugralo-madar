@@ -83,6 +83,7 @@ The objective is to survive as long as possible and achieve the highest score!
 
 ## Credits
 
+- **Web Development**: [Dzsanga](https://github.com/DzsangaGIT)
 - **Game Development**: [Krisz](https://github.com/kriszsusu), [Dzsanga](https://github.com/DzsangaGIT)
 - **Graphics**: [Bakos](https://github.com/BAKOSDOMI), [Krisz](https://github.com/kriszsusu), [Dzsanga](https://github.com/DzsangaGIT) (Microsoft Paint 🤩)
 - **Music/SFX**: Audacity + Freesound.org
