@@ -19,8 +19,15 @@ BG_GIF = gif_pygame.load("assets/bg.gif")
 gif_pygame.transform.scale(BG_GIF, (W, H))
 
 death_sound = pygame.mixer.Sound("assets/death.wav")
+death_sound.set_volume(0.5)
 flap_sound = pygame.mixer.Sound("assets/flap.wav")
+flap_sound.set_volume(0.5)
 score_sound = pygame.mixer.Sound("assets/score.wav")
+score_sound.set_volume(0.5)
+
+bgm = pygame.mixer.Sound("assets/bgm.wav") # its extremely out of place, but thats what we want, isnt it?
+bgm.set_volume(0.1)
+bgm.play(-1)
 
 pygame.display.set_icon(BIRDIMG)
 pygame.display.set_caption("Ugráló Madár")
